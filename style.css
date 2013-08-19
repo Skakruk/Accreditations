@@ -1,0 +1,542 @@
+#header{margin: 10px;}
+
+#linkswrap{float:right;}
+
+.footer{text-align:center; clear: both;}
+
+
+/*
+    ColorBox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+
+/*
+    User Style:
+    Change the following styles to modify the appearance of ColorBox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:url(../images/overlay.png) repeat 0 0;}
+#colorbox{}
+    #cboxTopLeft{width:21px; height:21px; background:url(../images/controls.png) no-repeat -100px 0;}
+    #cboxTopRight{width:21px; height:21px; background:url(../images/controls.png) no-repeat -129px 0;}
+    #cboxBottomLeft{width:21px; height:21px; background:url(../images/controls.png) no-repeat -100px -29px;}
+    #cboxBottomRight{width:21px; height:21px; background:url(../images/controls.png) no-repeat -129px -29px;}
+    #cboxMiddleLeft{width:21px; background:url(../images/controls.png) left top repeat-y;}
+    #cboxMiddleRight{width:21px; background:url(../images/controls.png) right top repeat-y;}
+    #cboxTopCenter{height:21px; background:url(../images/border.png) 0 0 repeat-x;}
+    #cboxBottomCenter{height:21px; background:url(../images/border.png) 0 -29px repeat-x;}
+    #cboxContent{background:#fff; overflow:hidden;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{margin-bottom:28px;}
+        #cboxTitle{position:absolute; bottom:4px; left:0; text-align:center; width:100%; color:#949494;}
+        #cboxCurrent{position:absolute; bottom:4px; left:58px; color:#949494;}
+        #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
+        #cboxPrevious{position:absolute; bottom:0; left:0; background:url(../images/controls.png) no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxPrevious.hover{background-position:-75px -25px;}
+        #cboxNext{position:absolute; bottom:0; left:27px; background:url(../images/controls.png) no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxNext.hover{background-position:-50px -25px;}
+        #cboxLoadingOverlay{background:url(../images/loading_background.png) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(../images/loading.gif) no-repeat center center;}
+        #cboxClose{position:absolute; bottom:0; right:0; background:url(../images/controls.png) no-repeat -25px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxClose.hover{background-position:-25px -25px;}
+
+/*
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to IE9.
+*/
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}
+
+/*
+  The following provides PNG transparency support for IE6
+*/
+.cboxIE6 #cboxTopLeft{background:url(../images/ie6/borderTopLeft.png);}
+.cboxIE6 #cboxTopCenter{background:url(../images/ie6/borderTopCenter.png);}
+.cboxIE6 #cboxTopRight{background:url(../images/ie6/borderTopRight.png);}
+.cboxIE6 #cboxBottomLeft{background:url(../images/ie6/borderBottomLeft.png);}
+.cboxIE6 #cboxBottomCenter{background:url(../images/ie6/borderBottomCenter.png);}
+.cboxIE6 #cboxBottomRight{background:url(../images/ie6/borderBottomRight.png);}
+.cboxIE6 #cboxMiddleLeft{background:url(../images/ie6/borderMiddleLeft.png);}
+.cboxIE6 #cboxMiddleRight{background:url(../images/ie6/borderMiddleRight.png);}
+
+.cboxIE6 #cboxTopLeft,
+.cboxIE6 #cboxTopCenter,
+.cboxIE6 #cboxTopRight,
+.cboxIE6 #cboxBottomLeft,
+.cboxIE6 #cboxBottomCenter,
+.cboxIE6 #cboxBottomRight,
+.cboxIE6 #cboxMiddleLeft,
+.cboxIE6 #cboxMiddleRight {
+    _behavior: expression(this.src = this.src ? this.src : this.currentStyle.backgroundImage.split('"')[1], this.style.background = "none", this.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=" + this.src + ", sizingMethod='scale')");
+}
+
+/* Fixes issue here http://code.google.com/p/jcrop/issues/detail?id=1 */
+.jcrop-holder { text-align: left; }
+
+.jcrop-vline, .jcrop-hline
+{
+	font-size: 0px;
+	position: absolute;
+	background: white url('images/Jcrop.gif') top left repeat;
+}
+.jcrop-vline { height: 100%; width: 1px !important; }
+.jcrop-hline { width: 100%; height: 1px !important; }
+.jcrop-vline.right { right: 0px; }
+.jcrop-hline.bottom { bottom: 0px; }
+.jcrop-handle {
+	font-size: 1px;
+	width: 7px !important;
+	height: 7px !important;
+	border: 1px #eee solid;
+	background-color: #333;
+}
+
+.jcrop-tracker { width: 100%; height: 100%; }
+
+.custom .jcrop-vline,
+.custom .jcrop-hline
+{
+	background: yellow;
+}
+.custom .jcrop-handle
+{
+	border-color: black;
+	background-color: #C7BB00;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+/*
+ *  File:         demo_table.css
+ *  CVS:          $Id$
+ *  Description:  CSS descriptions for DataTables demo pages
+ *  Author:       Allan Jardine
+ *  Created:      Tue May 12 06:47:22 BST 2009
+ *  Modified:     $Date$ by $Author$
+ *  Language:     CSS
+ *  Project:      DataTables
+ *
+ *  Copyright 2009 Allan Jardine. All Rights Reserved.
+ *
+ * ***************************************************************************
+ * DESCRIPTION
+ *
+ * The styles given here are suitable for the demos that are used with the standard DataTables
+ * distribution (see www.datatables.net). You will most likely wish to modify these styles to
+ * meet the layout requirements of your site.
+ *
+ * Common issues:
+ *   'full_numbers' pagination - I use an extra selector on the body tag to ensure that there is
+ *     no conflict between the two pagination types. If you want to use full_numbers pagination
+ *     ensure that you either have "example_alt_pagination" as a body class name, or better yet,
+ *     modify that selector.
+ *   Note that the path used for Images is relative. All images are by default located in
+ *     ../images/ - relative to this CSS file.
+ */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables features
+ */
+
+.dataTables_wrapper {
+	position: relative;
+	min-height: 302px;
+	clear: both;
+	_height: 302px;
+	zoom: 1; /* Feeling sorry for IE */
+}
+
+.dataTables_processing {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 250px;
+	height: 30px;
+	margin-left: -125px;
+	margin-top: -15px;
+	padding: 14px 0 2px 0;
+	border: 1px solid #ddd;
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+	background-color: white;
+}
+
+.dataTables_length {
+	width: 40%;
+	float: left;
+}
+
+.dataTables_filter {
+	
+	float: right;
+	text-align: right;
+}
+
+.dataTables_info {
+	width: 60%;
+	float: left;
+}
+
+.dataTables_paginate {
+	width: 44px;
+	* width: 50px;
+	float: right;
+	text-align: right;
+}
+
+/* Pagination nested */
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {
+	height: 19px;
+	width: 19px;
+	margin-left: 3px;
+	float: left;
+}
+
+.paginate_disabled_previous {
+	background-image: url('../images/back_disabled.jpg');
+}
+
+.paginate_enabled_previous {
+	background-image: url('../images/back_enabled.jpg');
+}
+
+.paginate_disabled_next {
+	background-image: url('../images/forward_disabled.jpg');
+}
+
+.paginate_enabled_next {
+	background-image: url('../images/forward_enabled.jpg');
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables display
+ */
+table.display {
+	margin: 0 auto;
+	clear: both;
+	width: 100%;
+
+	/* Note Firefox 3.5 and before have a bug with border-collapse
+	 * ( https://bugzilla.mozilla.org/show%5Fbug.cgi?id=155955 )
+	 * border-spacing: 0; is one possible option. Conditional-css.com is
+	 * useful for this kind of thing
+	 *
+	 * Further note IE 6/7 has problems when calculating widths with border width.
+	 * It subtracts one px relative to the other browsers from the first column, and
+	 * adds one to the end...
+	 *
+	 * If you want that effect I'd suggest setting a border-top/left on th/td's and
+	 * then filling in the gaps with other borders.
+	 */
+}
+
+table.display thead th {
+	padding: 3px 18px 3px 10px;
+	border-bottom: 1px solid black;
+	font-weight: bold;
+	cursor: pointer;
+	* cursor: hand;
+}
+
+table.display tfoot th {
+	padding: 3px 18px 3px 10px;
+	border-top: 1px solid black;
+	font-weight: bold;
+}
+
+table.display tr.heading2 td {
+	border-bottom: 1px solid #aaa;
+}
+
+table.display td {
+	padding: 3px 10px;
+}
+
+table.display td.center {
+	text-align: center;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables sorting
+ */
+
+.sorting_asc {
+	background: url('../images/sort_asc.png') no-repeat center right;
+        cursor: pointer;
+}
+
+.sorting_desc {
+	background: url('../images/sort_desc.png') no-repeat center right;
+        cursor: pointer;
+}
+
+.sorting {
+	background: url('../images/sort_both.png') no-repeat center right;
+        cursor: pointer;
+}
+
+.sorting_asc_disabled {
+	background: url('../images/sort_asc_disabled.png') no-repeat center right;
+}
+
+.sorting_desc_disabled {
+	background: url('../images/sort_desc_disabled.png') no-repeat center right;
+}
+
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Misc
+ */
+.dataTables_scroll {
+	clear: both;
+}
+
+.dataTables_scrollBody {
+	*margin-top: -1px;
+}
+
+.top, .bottom {
+	padding: 15px;
+	background-color: #F5F5F5;
+	border: 1px solid #CCCCCC;
+}
+
+.top .dataTables_info {
+	float: none;
+}
+
+.clear {
+	clear: both;
+}
+
+.dataTables_empty {
+	text-align: center;
+}
+
+tfoot input {
+	margin: 0.5em 0;
+	width: 100%;
+	color: #444;
+}
+
+tfoot input.search_init {
+	color: #999;
+}
+
+td.group {
+	background-color: #d1cfd0;
+	border-bottom: 2px solid #A19B9E;
+	border-top: 2px solid #A19B9E;
+}
+
+td.details {
+	background-color: #d1cfd0;
+	border: 2px solid #A19B9E;
+}
+
+
+.example_alt_pagination div.dataTables_info {
+	width: 40%;
+}
+
+.paging_full_numbers {
+	width: 400px;
+	height: 22px;
+	line-height: 22px;
+}
+
+.paging_full_numbers span.paginate_button,
+ 	.paging_full_numbers span.paginate_active {
+	border: 1px solid #aaa;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 2px 5px;
+	margin: 0 3px;
+	cursor: pointer;
+	*cursor: hand;
+}
+
+.paging_full_numbers span.paginate_button {
+	background-color: #ddd;
+}
+
+.paging_full_numbers span.paginate_button:hover {
+	background-color: #ccc;
+}
+
+.paging_full_numbers span.paginate_active {
+	background-color: #99B3FF;
+}
+
+table.display tr.even.row_selected td {
+	background-color: #B0BED9;
+}
+
+table.display tr.odd.row_selected td {
+	background-color: #9FAFD1;
+}
+
+
+
+
+
+/* For the Conditional-CSS grading rows */
+/*
+ 	Colour calculations (based off the main row colours)
+  Level 1:
+		dd > c4
+		ee > d5
+	Level 2:
+	  dd > d1
+	  ee > e2
+ */
+
+
+
+
+
+/*
+ * KeyTable
+ */
+table.KeyTable td {
+	border: 3px solid transparent;
+}
+
+table.KeyTable td.focus {
+	border: 3px solid #3366FF;
+}
+
+table.display tr.gradeA {
+	background-color: #eeffee;
+}
+
+table.display tr.gradeC {
+	background-color: #ddddff;
+}
+
+table.display tr.gradeX {
+	background-color: #ffdddd;
+}
+
+table.display tr.gradeU {
+	background-color: #ddd;
+}
+
+div.box {
+	height: 100px;
+	padding: 10px;
+	overflow: auto;
+	border: 1px solid #8080FF;
+	background-color: #E5E5FF;
+}
+
+#members_length label{width: auto;}
+#members_length select{width: auto;}
+#members_filter label{width: auto;}
+#members_filter select{width: auto;}
+
+.miniColors-trigger {
+	height: 22px;
+	width: 22px;
+	background: url(../images/trigger.png) center no-repeat;
+	vertical-align: middle;
+	margin: 0 .25em;
+	display: inline-block;
+	outline: none;
+}
+
+.miniColors-selector {
+	position: absolute;
+	width: 175px;
+	height: 150px;
+	background: #FFF;
+	border: solid 1px #BBB;
+	-moz-box-shadow: 0 0 6px rgba(0, 0, 0, .25);
+	-webkit-box-shadow: 0 0 6px rgba(0, 0, 0, .25);
+	box-shadow: 0 0 6px rgba(0, 0, 0, .25);
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	z-index: 999999;
+}
+
+.miniColors-selector.black {
+	background: #000;
+	border-color: #000;
+}
+
+.miniColors-colors {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 150px;
+	height: 150px;
+	background: url(../images/gradient.png) center no-repeat;
+	cursor: crosshair;
+}
+
+.miniColors-hues {
+	position: absolute;
+	top: 5px;
+	left: 160px;
+	width: 20px;
+	height: 150px;
+	background: url(../images/rainbow.png) center no-repeat;
+	cursor: crosshair;
+}
+
+.miniColors-colorPicker {
+	position: absolute;
+	width: 11px;
+	height: 11px;
+	background: url(../images/circle.gif) center no-repeat;
+}
+
+.miniColors-huePicker {
+	position: absolute;
+	left: -3px;
+	width: 26px;
+	height: 3px;
+	background: url(../images/line.gif) center no-repeat;
+}
+
+tr.child td{background-color: #FFFFDD !important;}
+tr.child{display:none;}
+
+.curPhoto{
+	margin: 10px 0 0 150px;
+}
+.curPhoto .deletePhoto{
+	background:url(../images/controls.png) no-repeat -25px 0; 
+	width:25px; 
+	height:25px;
+	display: inline-block;
+	vertical-align: top;
+}

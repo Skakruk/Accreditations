@@ -1,0 +1,403 @@
+
+
+*{margin:0; padding:0;}
+body{
+    margin: 0mm ;    
+}
+.frontwrap{
+    width:356px;
+    margin: 0 0 0 0;
+    height: 501px;
+    display:block;
+    position: relative;
+    float:left;
+    border-style:solid;
+    border-width:1px;
+    border-color:#D2D1D0 !important;
+   }
+.archer{color:#0093DD;
+    border-color: #0093DD;
+}
+
+.coach{color:#84c225;
+    border-color: #84c225;
+}
+
+.judge{color:#da251d;
+    border-color: #da251d;
+}
+
+.officials{color:#d7bc00;
+    border-color: #d7bc00;
+}
+
+.organizing{color:#183884;
+    border-color: #183884;
+}
+
+.press{color:#7379b1;
+    border-color: #7379b1;
+}
+
+.staff{color:#e77844;
+    border-color: #e77844;
+}
+
+.vip{color:#901e78;
+    border-color: #901e78;
+}
+.volunteer{color:#007a37;
+    border-color: #007a37;
+}
+.frontwrap .photo{
+    border-style: solid;
+    border-width: 4px;
+    height: 166px;
+    left: 25px;
+    overflow: hidden;
+    position: absolute;
+    top: 133px;
+    width: 124px;
+   
+}
+.frontwrap .name{
+    font-size: 24px;
+    font-weight: bold;
+    left: 173px;
+    position: absolute;
+    top: 128px;
+    display:block;
+}
+.frontwrap .surname{
+    font-size: 24px;
+    font-weight: bold;
+    left: 173px;
+   position: absolute;
+    top: 150px;
+    display:block;
+}
+.frontwrap .borderBig{
+    border-style:solid;
+    border-width:7px;
+    height: 471px;
+    left: 7px;
+    position: absolute;
+    top: 9px;
+    width: 327px;
+}
+.frontwrap .borderBottom{
+    border-top-style:solid;
+    border-top-width:7px;
+
+    height: 1px;
+    left: 14px;
+    position: absolute;
+    top: 382px;
+    width: 329px;}
+.frontwrap .flagborder{
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    border-left-style:solid;
+    border-left-width:1px;
+    height: 100px;
+    left: 175px;
+    position: absolute;
+    top: 192px;
+    width: 150px;
+}
+.frontwrap .flagborder .lt{
+    border-top-style:solid;
+    border-top-width:1px;
+
+    height: 1px;
+    position: absolute;
+    width: 10px;
+    top: 0;
+    left: 0;
+}
+
+.frontwrap .catborder{
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    border-left-style:solid;
+    border-left-width:1px;
+    height: 62px;
+    left: 175px;
+    position: absolute;
+    top: 310px;
+    width: 150px;
+}
+.frontwrap .catborder .lt{
+    border-top-style:solid;
+    border-top-width:1px;
+    height: 1px;
+    position: absolute;
+    width: 10px;
+    top: 0;
+    left: 0;
+}
+.frontwrap .ukcountryLabel{
+     font-size: 8px;
+    font-style: italic;
+    left: 243px;
+    line-height: 8px;
+    position: absolute;
+    display:block;
+    top: 186px;
+}
+
+.frontwrap .ukcategoryLabel{
+    font-size: 8px;
+    font-style: italic;
+    left: 236px;
+    line-height: 8px;
+    position: absolute;
+    display:block;
+    top: 304px;
+}
+
+
+.frontwrap .countryLabel{
+    color: #000000;
+    font-size: 10px;
+    left: 188px;
+    line-height: 10px;
+    position: absolute;
+    display:block;
+    top: 184px;
+}
+
+.frontwrap .categoryLabel{
+    color: #000000;
+    font-size: 10px;
+    left: 189px;
+    line-height: 10px;
+    position: absolute;
+    display:block;
+    top: 302px;
+}
+
+.frontwrap .country{
+    font-size: 18px;
+    left: 189px;
+    position: absolute;
+    display:block;
+    top: 266px;
+}
+.frontwrap .country.hasCity{
+    top: 258px;
+}
+.frontwrap .encountry{float:left;}
+.frontwrap .ukcountry{
+    font-size: 10px;
+    font-style: italic; 
+    float:left;
+    margin-left: 4px;
+    margin-top: 8px;
+}
+.city_name{float: left;
+    font-size: 10px;
+    font-style: italic;
+    margin-left: 3px;
+    margin-top: 0;
+    clear:left;
+}
+.org_name{float: left;
+    font-size: 10px;
+    font-style: italic;
+    margin-left: 5px;
+    margin-top: 0;}
+.frontwrap .arccat{
+    font-size: 47px;
+    left: 224px;
+    letter-spacing: -2px;
+    position: absolute;
+    text-align: center;
+    top: 303px;
+    display:block;
+    width: 114px;
+}
+.frontwrap .cat{
+    font-size: 47px;
+    left: 188px;
+    position: absolute;
+    display:block;
+     top: 308px;
+}
+
+.frontwrap .cats {
+    display: block;
+    font-size: 10px;
+    left: 187px;
+    position: absolute;
+    top: 357px;
+    white-space: normal;
+    width: 154px;
+}
+.frontwrap .ukcat{
+    font-size: 10px;
+     font-style: italic; 
+    /*left: 187px;*/
+    display:inline-block;
+    /*position: absolute;*/
+    /*top: 358px;*/
+}
+
+.frontwrap .encat{
+    font-size: 10px;
+    /*left: 187px;*/
+    /*position: absolute;*/
+    /*top: 347px;*/
+    display:inline-block;
+}
+
+
+.c_field, .t_field, .disko, .results, .transp, .comunic{
+    position: absolute;
+
+}
+
+.permisions{  height: 100px;
+    left: 20px;
+    position: absolute;
+    top: 390px;
+    width: 300px;}
+.permisions .rcol .permwrap{
+
+           
+position: relative;
+         margin: 3px 10px 3px 0;
+         width:138px;
+         height: 26px;}
+.permisions .lcol .permwrap{
+         
+      
+            position: relative;
+         margin: 3px 10px 3px 0;
+         width:138px;
+         height: 26px;}
+.permisions .rcol{ position:absolute; left:148px; width:148px;  height: 100px;}
+.permisions .lcol{ position:absolute;  width:148px;  height: 100px;}
+.permisions .rcol .permwrap img,
+.permisions .lcol .permwrap img{  margin-right: 5px; }
+.permisions .rcol .permwrap .p1,
+.permisions .lcol .permwrap .p1
+{color: #000000;
+    display:block;
+    float: left;
+    font-size: 10px;
+    left: 36px;
+    position: absolute;
+    top: 1px;
+
+    width: 120px;}
+.permisions .rcol .permwrap .p2,
+.permisions .lcol .permwrap .p2{color: #8C8C8C;
+    display:block;
+    float: left;
+    font-size: 10px;
+    left: 36px;
+    margin-top: 1px;
+    position: absolute;
+    top: 13px;
+    width: 120px;}
+
+.flag{left: 188px;
+    position: absolute;
+    top: 200px;}
+
+.backside{
+    border: 1px solid #D2D1D0;
+    height: 501px;
+    overflow:hidden;
+    float:left;
+    margin: 0 0 0 1px;
+    width: 354px;
+}
+.backside img{float:left;}
+.spacer{width: 10px; float:left; height: 10px;}
+
+.badge{ height: 516px;
+        position: relative;
+    width: 725px;}
+
+
+/*@media print
+{
+  body{background-color:white !important; }
+  .pagebreak  { display:block; page-break-before:always; clear:both; }
+}*/
+
+@page{
+    size: 8.5in 11.7in;
+    margin: 5mm;
+}
+
+.clear{clear: both}
+
+.t td{
+    vertical-align: top;
+
+}
+
+.page{
+page-break-after: always;
+page-break-inside: avoid;
+}
+
+body .page:last-child {
+     page-break-after: avoid;
+}
+
+.frontwrap, .backside{
+width: auto;
+overflow: hidden;
+}
+
+
+.card{
+    width:712px;
+    margin: 0 0 0 0;
+    height: 501px;
+    display:block;
+    position: relative;
+    border-style:solid;
+    border-width:1px;
+    border-color:#D2D1D0 !important;
+}
+
+.card img{
+    position: absolute;
+    z-index: -100;
+    opacity: 0.5;
+}
+.card .number{
+    display: inline-block;
+    font-size: 230px;
+    line-height: 187px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 122px;
+    width: 712px;
+}
+.card .names{
+     background-color: #F5A301;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 46px;
+    line-height: 64px;
+    position: absolute;
+    text-align: center;
+    top: 335px;
+    width: 712px;
+}
+
+.card .country{
+    display: inline-block;
+    font-size: 32px;
+    position: absolute;
+    text-align: center;
+    top: 425px;
+    width: 712px;
+}

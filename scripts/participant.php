@@ -5,13 +5,13 @@ if (!empty($_FILES)) {
     $tempFile = $_FILES['files']['tmp_name'];
 
     $ext = '.' . substr(strrchr($_FILES['files']['name'], '.'), 1);
-    $targetPath = $_SERVER['DOCUMENT_ROOT'] . '/'. $_REQUEST['folder'] . '/';
-    $filename = 'f_' . time() . $ext;
+    $targetPath = $_SERVER['DOCUMENT_ROOT'] . '/' . $_REQUEST['folder'] . '/';
+    $filename = 'p_' . time() . $ext;
     $targetFile = str_replace('//', '/', $targetPath) . $filename;
 
     $thumb = PhpThumbFactory::create($tempFile);
-    $thumb->resize(240, 112);
-    $thumb->save($targetFile, 'png');
+    $thumb->resize(500, 500);
+    $thumb->save($targetFile);
 
     echo json_encode(array(
         "files" => array(
@@ -21,4 +21,6 @@ if (!empty($_FILES)) {
             )
         )
     ));
+
+    exit();
 }

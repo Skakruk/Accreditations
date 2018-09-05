@@ -23,16 +23,16 @@
 	<div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-        
+
           <a class="brand" href="/">Accreditations</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Participants <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li class="<?=($page=='add'?'active':'')?>"><a href="/add.php">Add new</a></li>      
+                  <li class="<?=($page=='add'?'active':'')?>"><a href="/add.php">Add new</a></li>
                   <li class="<?=($page=='index'?'active':'')?>"><a href="/">List</a></li>
-                  <!--<li class="<?=($page=='targets'?'active':'')?>"><a href="/targets.php">Targets</a></li>     -->    
+                  <!--<li class="<?=($page=='targets'?'active':'')?>"><a href="/targets.php">Targets</a></li>     -->
                   <li class="<?=($page=='backcards'?'active':'')?>"><a href="/backcards.php">Back numbers</a></li>
                 </ul>
               </li>
@@ -45,7 +45,7 @@
 				    <li class="<?=($page=='cities'?'active':'')?>"><a href="cities.php">Cities</a></li>
 				    <li class="<?=($page=='organizations'?'active':'')?>"><a href="organizations.php">Orgs</a></li>
 				    <li class="<?=($page=='maincategories'?'active':'')?>"><a href="maincategories.php">Categories</a></li>
-				    <li class="<?=($page=='permisions'?'active':'')?>"><a href="permisions.php">Permisions</a></li>
+				    <li class="<?=($page=='permisions'?'active':'')?>"><a href="permissions.php">Permisions</a></li>
              <li class="<?=($page=='updater'?'active':'')?>"><a href="updater.php">Update</a></li>
     			</ul>
     		</li>
@@ -55,5 +55,5 @@
             </div>
           </div><!--/.nav-collapse -->
         </div>
-      </div> 
+      </div>
     </div>

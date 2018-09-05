@@ -1,0 +1,10 @@
+<?php
+
+$config = (object) array(
+    "db" => (object) array(
+        "host" => "localhost",
+        "user" => "acc",
+        "password" => "acc",
+        "db" => "acc"
+    )
+);

@@ -5,11 +5,8 @@ if(!isset($_SESSION['logined'])){
 }
 include('template/header.php');
 ?>
-<div id="header">
-   
-		</div><!-- #header-->
-                 <div id="content">
-                 </div>
+<div id="header"></div><!-- #header-->
+<div id="content"></div>
 <?php
 include('template/footer.php');
 ?>

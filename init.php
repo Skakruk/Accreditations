@@ -1,5 +1,5 @@
 <?php
-if (!@include("./config/config.php")) {
+if (!@include($_SERVER['DOCUMENT_ROOT'] . "/config/config.php")) {
     echo "Please setup 'config/config.php'";
     die();
 };

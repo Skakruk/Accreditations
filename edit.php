@@ -459,17 +459,17 @@ include('template/header.php');
                     if ($resp->num_rows) {
 
                         while ($rowp = $resp->fetch_assoc()) {
-                            if (in_array($rowp['id'], $row['permisions'])) {
+                            if (!is_null($row['permisions']) && in_array($rowp['id'], $row['permisions'])) {
                                 $act = 'checked="checked" ';
                             } else {
                                 $act = '';
                             }
                             echo '
-													<label class="checkbox">
-														<input type="checkbox" ' . $act . 'value="' . $rowp['id'] . '" name="permisions[]">
-														<span>' . $rowp['name'] . '</span>
-													</label>
-												';
+                                <label class="checkbox">
+                                    <input type="checkbox" ' . $act . 'value="' . $rowp['id'] . '" name="permisions[]">
+                                    <span>' . $rowp['name'] . '</span>
+                                </label>
+                            ';
                         }
                     }
                     ?>

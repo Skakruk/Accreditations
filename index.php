@@ -24,6 +24,7 @@ include('template/header.php');
                 null,
                 null,
                 null,
+                null,
                 { "bSortable": false },
                 { "bSortable": false }
             ],
@@ -36,6 +37,7 @@ include('template/header.php');
                     null,
                     { type: "text" },
                     { type: "text" },
+                    { type: "select" },
                     { type: "select" },
                     { type: "select" },
                     { type: "select" },
@@ -106,24 +108,26 @@ include('template/header.php');
         <thead>
             <th><input type="checkbox" class="checkallusers" /></th>
             <th>#</th>
-            <th>Name</th>
             <th>Surname</th>
+            <th>Name</th>
             <th>Category</th>
             <th>Arch. category</th>
             <th>Country</th>
             <th>City</th>
+            <th>Club</th>
             <th width="55">Print <input type="checkbox" class="checkall" /></th>
             <th width="85" style="text-align:center;">Actions</th>
         </thead>
         <tfoot>
             <th><a href="#" class="btn btn-mini btn-danger" onclick="delAll(event)">Delete</a></th>
             <th></th>
-            <th>Name</th>
             <th>Surname</th>
+            <th>Name</th>
             <th>Category</th>
             <th>Arch. category</th>
             <th>Country</th>
             <th>City</th>
+            <th></th>
             <th></th>
             <th></th>
         </tfoot>
@@ -147,12 +151,13 @@ include('template/header.php');
                     echo '<tr class="' . $cla . '">
 					<td><input type="checkbox" name="id" class="user" value="' . $row['id'] . '"/></td>
 					<td>' . $row['id'] . '</td>
-					<td>' . $row['name'] . '</td>
 					<td>' . $row['surname'] . '</td>
+					<td>' . $row['name'] . '</td>
 					<td>' . $row['cat'] . '</td>
 					<td>' . $row['arc_cat'] . '</td>
 					<td>' . $row['country_name'] . '</td>
                     <td>' . $row['city_name'] . '</td>
+                    <td>' . $row['org_name'] . '</td>
 					<td class="printtd"><label><input type="checkbox" name="print"  class="toprint" value="' . $row['id'] . '"/></label></td>
 					<td  style="white-space: nowrap;padding:5px;"><a class="btn btn-mini" href="edit.php?id=' . $row['id'] . '">Edit</a>&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-mini" onclick="del(' . $row['id'] . '); return false;">Delete</a></td>
 				</tr>';

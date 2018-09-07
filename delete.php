@@ -6,8 +6,25 @@ if (!isset($_SESSION['logined'])) {
 }
 
 if (isset($_GET['id'])) {
-    $sql = 'DELETE FROM users WHERE id="' . $db->real_escape_string($_GET['id']) . '"';
-    $db->query($sql);
+    $paramId = 0;
+    $ids = explode(",", $_GET['id']);
+
+    if (!($stmt = $db->prepare("DELETE FROM users WHERE id = ?"))) {
+        echo "Prepare failed: (" . $db->errno . ") " . $db->error;
+    }
+
+    if (!$stmt->bind_param('s',$id)) {
+        echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+    }
+
+    foreach ($ids as $id) {
+        if (!$stmt->execute()) {
+            echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+        }
+    }
+
+    $stmt->close();
+
     header('Location: index.php');
     exit();
 }

@@ -27,7 +27,7 @@ $res = $db->query($sql);
 $row = $res->fetch_assoc();
 
 $inputFileName = './uploads/' . $row['value'];
-if (file_exists($inputFileName)) {
+if (is_file($inputFileName)) {
 
     ini_set('include_path', ini_get('include_path') . ';../classes/');
 

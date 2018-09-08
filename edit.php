@@ -102,42 +102,59 @@ include('template/header.php');
     }
 
     ?>
+    var jcrop_api = null;
 
     $(function () {
+        $('#addPhotoModal')
+            .bind('hidden', function () {
+                $('.modal-placeholder').hide();
+            })
+            .bind('show', function () {
+                $('.modal-placeholder').show();
+            });
+
         $('#photoup').fileupload({
             url: '/scripts/participant.php',
             dataType: 'json',
-            formData: {folder: 'photos'},
+            formData: { folder: 'photos' },
             done: function (e, data) {
+
                 var photo = data.result.files[0];
+
                 $("#photo").val(photo.name);
                 $("#photoupUploader").hide();
-                $('#addPhotoModal img').attr('src', photo.url);
-                $('#addPhotoModal').modal('show');
+
+                $('#addPhotoModal .imgholder').attr('src', photo.url);
+                $('#addPhotoModal').modal({
+                    backdrop: 'static'
+                });
+
                 //
                 $('#jcrop_target').Jcrop({
                     addClass: 'custom',
                     bgColor: 'yellow',
                     bgOpacity: .8,
                     sideHandles: true,
-                    aspectRatio: 0.75
+                    aspectRatio: 0.75,
+                    boxHeight: document.body.clientHeight - 300,
                 }, function () {
                     jcrop_api = this;
                 });
-                //
-                $('.modal-footer a').on('click', function (e) {
-                    e.preventDefault();
-                    var data = jcrop_api.tellSelect();
-                    data.img = photo.name;
-                    $.post('/ajaxfunctions.php?action=crop_image', data, function () {
-                        $('#addPhotoModal').modal('hide');
-                        $(".curPhoto img").attr("src", photo.url + "?" + e.timeStamp);
-                        $(".curPhoto").show();
-                    }, 'json');
-                    $(this).off('click');
-                    jcrop_api.destroy();
-                });
             }
+        });
+
+        $('.modal-footer .save-changes').on('click', function (e) {
+            e.preventDefault();
+            var data = jcrop_api.tellSelect();
+            data.img = $("#photo").val();
+
+            $.post('/ajaxfunctions.php?action=crop_image', data, function () {
+                $('#addPhotoModal').modal('hide');
+                $(".curPhoto img").attr("src", '/photos/' + data.img + "?" + e.timeStamp);
+                $(".curPhoto").show();
+            }, 'json');
+
+            jcrop_api.destroy();
         });
 
         if (subcats && selCat) {
@@ -149,7 +166,7 @@ include('template/header.php');
                     var sel = ((selSubCat == item.id) ? 'selected="selected" ' : '');
                     ech += '<option ' + sel + 'value="' + item.id + '">' + item.name + '</option>';
                 }
-            })
+            });
             if (itmtr) {
                 $('#subcat').show();
                 $('#subcat select').html(ech);
@@ -166,7 +183,7 @@ include('template/header.php');
                     itmtr = true;
                     ech += '<option value="' + item.id + '">' + item.name + '</option>';
                 }
-            })
+            });
             if (itmtr) {
                 $('#subcat').show();
                 $('#subcat select').html(ech);
@@ -174,14 +191,14 @@ include('template/header.php');
                 $('#subcat').hide();
                 $('#subcat select').html(' ');
             }
-        })
+        });
 
 
         if (cities) {
             var opt = '<option disabled="disabled" selected="selected">Select</option>';
             $.each(cities, function (index, item) {
-                if (item.country == selCountry) {
-                    var act = ((item.id == selCity) ? 'selected="selected" ' : '');
+                if (item.country === selCountry) {
+                    var act = ((item.id === selCity) ? 'selected="selected" ' : '');
                     opt += '<option ' + act + 'value="' + item.id + '">' + item.name + '</option>';
                 }
             });
@@ -315,6 +332,12 @@ include('template/header.php');
             });
         })
     });
+
+    function cancelUploadPhoto() {
+        $("#photo").val('');
+        $('#addPhotoModal .imgholder').attr('src', '');
+        $('#addPhotoModal').modal('hide');
+    }
 </script>
 <?php echo(!empty($row['photo']) && file_exists($_SERVER['DOCUMENT_ROOT'] . '/photos/' . $row['photo']) ? '<style> #photoupUploader{display:none;} </style>' : '') ?>
 <div id="header">
@@ -326,17 +349,18 @@ include('template/header.php');
         <form method="POST" class="form-horizontal">
             <input type="hidden" name="photo" id="photo" value="<?php echo $row['photo']; ?>" autocomplete="off" />
             <div class="control-group">
-                <label class="control-label">Name</label>
-                <div class="controls">
-                    <input type="text" name="name"
-                           value="<?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?>" class="span5" />
-                </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label">Surname</label>
                 <div class="controls">
                     <input type="text" name="surname"
                            value="<?php echo htmlentities($row['surname'], ENT_QUOTES, 'UTF-8'); ?>" class="span5" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Name</label>
+                <div class="controls">
+                    <input type="text" name="name"
+                           value="<?php echo htmlentities($row['name'], ENT_QUOTES, 'UTF-8'); ?>" class="span5" />
                 </div>
             </div>
 
@@ -433,24 +457,11 @@ include('template/header.php');
                         <a href="#" class="btn btn-mini btn-danger deletePhoto"><i class="icon-remove icon-white"></i>
                             Delete photo</a>
                     </div>
-                    <div id="addPhotoModal" class="modal hide fade">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="imgwrap">
-                                <img class="imgholder" id="jcrop_target" />
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#" class="btn btn-primary">Save changes</a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label">Pemisions</label>
+                <label class="control-label">Permissions</label>
                 <div class="controls">
                     <?php
                     $sqlp = 'SELECT * FROM permisions';
@@ -488,7 +499,19 @@ include('template/header.php');
         </form>
     </div>
 </div><!-- #content-->
-
+<div class="modal-placeholder" style="display: none;">
+    <div id="addPhotoModal" class="modal hide fade">
+        <div class="modal-body">
+            <div id="imgwrap">
+                <img class="imgholder" id="jcrop_target" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" type="button" onclick="cancelUploadPhoto()">Cancel</button>
+            <a href="#" class="btn btn-primary save-changes">Save changes</a>
+        </div>
+    </div>
+</div>
 <?php
 include('template/footer.php');
 ?>

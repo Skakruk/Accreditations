@@ -14,6 +14,7 @@ include('template/header.php');
     $(document).ready(function () {
 
         $("table#members").dataTable({
+            "bStateSave": true,
             "aaSorting": [[ 1, "desc" ]],
             "aoColumns": [
                 { "bSortable": false },
@@ -151,7 +152,7 @@ include('template/header.php');
                     echo '<tr class="' . $cla . '">
 					<td><input type="checkbox" name="id" class="user" value="' . $row['id'] . '"/></td>
 					<td>' . $row['id'] . '</td>
-					<td>' . $row['surname'] . '</td>
+					<td>' . $row['surname'] . (!empty($row['photo'] && file_exists($_SERVER['DOCUMENT_ROOT'] . '/photos/' . $row['photo'])) ? '<i class="icon-camera has-photo pull-right"></i> ' : '' )  .'</td>
 					<td>' . $row['name'] . '</td>
 					<td>' . $row['cat'] . '</td>
 					<td>' . $row['arc_cat'] . '</td>

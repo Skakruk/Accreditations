@@ -704,7 +704,12 @@ tr.child {
 
 #imgwrap {
   display: inline-block;
+  /*max-height: calc(100vh - 100px);*/
 }
+
+/*.imgholder {*/
+  /*max-height: calc(100vh - 100px);*/
+/*}*/
 
 .backbut {
   color: #FFFFFF;
@@ -751,4 +756,35 @@ td.printtd label {
 
 td.printtd label input {
   margin: 0;
+}
+
+.modal-placeholder {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-placeholder .modal {
+  margin: 0;
+  top: 0;
+  position: static;
+  left: 0;
+}
+
+.modal-placeholder .modal.hide {
+  transform: translate(0, -100%);
+}
+
+.modal-placeholder .modal.in {
+  top: 0;
+  transform: translate(0, 0);
+}
+
+.modal-open {
+  overflow-y: hidden;
 }

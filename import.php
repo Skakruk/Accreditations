@@ -38,9 +38,11 @@ if (isset($_POST['save'])) {
         }
 
         $citiesIdList = array();
-        $res = $db->query('SELECT id, name FROM cities');
+        $citiesToCountriesList = array();
+        $res = $db->query('SELECT id, name, country FROM cities');
         while ($row = $res->fetch_assoc()) {
             $citiesIdList[$row['name']] = $row['id'];
+            $citiesToCountriesList[$row['id']] = $row['country'];
         }
 
         $orgsIdList = array();
@@ -72,13 +74,25 @@ if (isset($_POST['save'])) {
 
                 $city = isset($citiesIdList[$row["F"]]) ? $citiesIdList[$row["F"]] : 0;
 
+                if (!empty($row["E"]) && isset($countriesIdList[$row["E"]])) {
+                    $country = $countriesIdList[$row["E"]];
+                } else if ($city !== 0) {
+                    if (isset($citiesToCountriesList[$city])) {
+                        $country = $citiesToCountriesList[$city];
+                    } else {
+                        $country = 0;
+                    }
+                } else {
+                    $country = 0;
+                }
+
                 $participant = array(
                     "name" => $row["C"],
                     "surname" => $row["B"],
-                    "country" => isset($countriesIdList[$row["E"]]) ? $countriesIdList[$row["E"]] : 0,
+                    "country" => $country,
                     "category" => $archery['id'],
                     "arccat" => isset($archCategoriesIdList[strtoupper(join("", $participantCategory))]) ? $archCategoriesIdList[strtoupper(join("", $participantCategory))] : 0,
-                    "city" => isset($citiesIdList[$row["F"]]) ? $citiesIdList[$row["F"]] : 0,
+                    "city" => $city,
                     "org" => isset($orgsIdList[$city]) && isset($orgsIdList[$city][$row["G"]]) ? $orgsIdList[$city][$row["G"]] : 0
                 );
 
